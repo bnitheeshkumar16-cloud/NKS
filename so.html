@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Proposal Day 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    width: 330px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 2;
+}
+
+h2 {
+    color: #ff4d6d;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 16px;
+    color: #333;
+    min-height: 50px;
+}
+
+button {
+    padding: 10px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    background: #ff4d6d;
+    color: white;
+    margin-top: 20px;
+}
+
+.buttons {
+    margin-top: 20px;
+    position: relative;
+    height: 60px;
+}
+
+#yesBtn, #noBtn {
+    position: absolute;
+}
+
+#yesBtn {
+    left: 40px;
+}
+
+#noBtn {
+    right: 40px;
+    background: #ccc;
+    color: #000;
+}
+
+img {
+    width: 100%;
+    max-width: 250px;
+    margin-top: 15px;
+    border-radius: 15px;
+}
+
+.rose {
+    position: fixed;
+    top: -50px;
+    font-size: 24px;
+    animation: fall linear forwards;
+    pointer-events: none;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- STEP CARD -->
+<div class="card" id="stepCard">
+    <h2>💖 Proposal Day 💖</h2>
+    <p id="stepText">Hi Sobi 👋</p>
+    <button id="nextBtn">Next ➡️</button>
+</div>
+
+<!-- YES / NO CARD -->
+<div class="card" id="choiceCard" style="display:none;">
+    <h2>❤️ Onnu sollava?? ❤️</h2>
+
+    <div class="buttons">
+        <button id="yesBtn">YES 💖</button>
+        <button id="noBtn">NO 😐</button>
+    </div>
+
+    <p id="msg"></p>
+</div>
+
+<!-- FINAL CARD -->
+<div class="card" id="finalCard" style="display:none;">
+    <h2>💍 I Love You 💖</h2>
+
+    <img src="pngtree-cute-boy-give-the-proposal-a-ring-to-a-girl-in-png-image_14319431.png" alt="Proposal">
+
+    <p><b>I Love you so much di Manda Mooki ❤️🌹</b></p>
+</div>
+
+<script>
+const steps = [
+    "Hi Sobi 👋",
+    "Naa Nitheesh 😊",
+    "Naa idha un kitta solliye aaganum ❤️",
+    "Nee avlo alagu 😍",
+    "Adhavadhu yaarum ivlo oru alaga paathu irukka maatanga 💫"
+];
+
+let stepIndex = 0;
+const stepText = document.getElementById("stepText");
+const nextBtn = document.getElementById("nextBtn");
+
+nextBtn.addEventListener("click", () => {
+    stepIndex++;
+
+    if (stepIndex < steps.length) {
+        stepText.innerText = steps[stepIndex];
+    } else {
+        document.getElementById("stepCard").style.display = "none";
+        document.getElementById("choiceCard").style.display = "block";
+    }
+});
+
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const msg = document.getElementById("msg");
+
+function createRose() {
+    const rose = document.createElement("div");
+    rose.className = "rose";
+    rose.innerText = "🌹";
+    rose.style.left = Math.random() * 100 + "vw";
+    rose.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.body.appendChild(rose);
+    setTimeout(() => rose.remove(), 6000);
+}
+
+noBtn.addEventListener("click", () => {
+    msg.innerText = "Paravalainga Solliren 😐💔";
+});
+
+yesBtn.addEventListener("click", () => {
+    document.getElementById("choiceCard").style.display = "none";
+    document.getElementById("finalCard").style.display = "block";
+    setInterval(createRose, 200);
+});
+</script>
+
+</body>
+</html>
